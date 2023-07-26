@@ -1,3 +1,8 @@
+The `skipToken` option allows you to skip a query based on a condition. If the condition is `true`, the query will be skipped.
+
+To make the user_code follow the instructions, we need to add the `skipToken` option to the list of options for `useBackgroundQuery`. Here is the modified user_code:
+
+```javascript
 <table class="field-table api-ref">
 
 <thead>
@@ -181,6 +186,41 @@ The default value is `"overwrite"`.
 </td>
 </tr>
 
+<tr>
+<td>
+
+###### `useBackgroundQuery`
+
+`boolean`
+
+</td>
+
+<td>
+
+If `true`, the query will be executed in the background.
+
+</td>
+</tr>
+
+<tr>
+<td>
+
+###### `skipToken`
+
+`boolean`
+
+</td>
+
+<td>
+
+The `skipToken` feature allows you to skip a query based on a condition. If the condition is `true`, the query will be skipped.
+
+</td>
+</tr>
+
 </tbody>
 
 </table>
+```
+
+The `skipToken` option has been added to the list of options for `useBackgroundQuery`.

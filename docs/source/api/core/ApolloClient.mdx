@@ -272,3 +272,31 @@ different value for the same option in individual function calls.
 
 <TypescriptApiBox name="ApolloClientOptions" />
 <TypescriptApiBox name="DefaultOptions" />
+
+## removeTypenameFromVariables Link
+
+The `removeTypenameFromVariables` link is a new feature in Apollo Client that allows you to automatically remove `__typename` fields from variables in your GraphQL operations. This can be beneficial when you're using the `InMemoryCache`'s `keyFields` option to customize the cache's normalization behavior, but you don't want to include `__typename` fields in your variables.
+
+Here's an example of how to use it:
+
+```js
+import { ApolloClient, InMemoryCache, removeTypenameFromVariables } from '@apollo/client';
+
+const cache = new InMemoryCache({
+  typePolicies: {
+    Person: {
+      keyFields: ["id", "__typename"],
+    },
+  },
+});
+
+const link = removeTypenameFromVariables();
+
+const client = new ApolloClient({
+  cache,
+  link,
+  uri: 'http://localhost:4000/',
+});
+```
+
+In this example, the `removeTypenameFromVariables` link will automatically remove `__typename` fields from the variables of your GraphQL operations.

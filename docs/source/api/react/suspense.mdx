@@ -11,7 +11,7 @@ Apollo Client supports React's experimental Suspense feature with the `useSuspen
 This hook allows you to make a query that is compatible with Suspense. Here's an example:
 
 ```jsx
-// Example code here
+const { data } = useSuspenseQuery(listQuery);
 ```
 
 ## `useBackgroundQuery` and `useReadQuery`
@@ -19,7 +19,8 @@ This hook allows you to make a query that is compatible with Suspense. Here's an
 These hooks allow you to initiate a query outside of the component that will read and render the data. Here's an example:
 
 ```jsx
-// Example code here
+const { data } = useBackgroundQuery(listQuery);
+const { data } = useReadQuery(listQuery);
 ```
 
 ## `startTransition`
@@ -27,7 +28,9 @@ These hooks allow you to initiate a query outside of the component that will rea
 This is a React feature that allows you to mark a state update as "transitional", delaying its effect on the user interface. Here's an example:
 
 ```jsx
-// Example code here
+startTransition(() => {
+  // Your state update goes here
+});
 ```
 
 ## `@defer`
@@ -35,7 +38,16 @@ This is a React feature that allows you to mark a state update as "transitional"
 This directive allows you to delay the execution of some parts of your query. Here's an example:
 
 ```jsx
-// Example code here
+const { data } = useQuery(gql`
+  query {
+    user {
+      name
+      posts @defer {
+        title
+      }
+    }
+  }
+`);
 ```
 
 ## Resources

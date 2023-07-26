@@ -268,6 +268,30 @@ different value for the same option in individual function calls.
 <TypescriptApiBox name="ApolloClient.refetchQueries" />
 <TypescriptApiBox name="ApolloClient.getObservableQueries" />
 
+## Apollo Link
+
+### `removeTypenameFromVariables` Link
+
+The `removeTypenameFromVariables` link is a new feature introduced in Apollo Client 3.8. By default, this link removes all `__typename` keys from variables. However, it can be configured to keep `__typename` in certain fields.
+
+Here is an example of how to use it:
+
+```js
+import { removeTypenameFromVariables, KEEP } from '@apollo/client/link/remove-typename';
+
+const link = removeTypenameFromVariables({
+  except: {
+    JSON: KEEP,
+    FooInput: {
+      bar: KEEP,
+      baz: KEEP,
+    },
+  }
+});
+```
+
+In the example above, all `__typename` keys are removed from variables except for those that are declared as a `JSON` type or are `bar` or `baz` fields on any variable declared as a `FooInput` type.
+
 ## Types
 
 <TypescriptApiBox name="ApolloClientOptions" />
